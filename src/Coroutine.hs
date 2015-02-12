@@ -7,12 +7,12 @@ newtype Coroutine a b = Coroutine (a -> (b, Coroutine a b))
 scan :: (s -> a -> s) -> s -> Coroutine a s
 scan f = go
   where
-    go s = Coroutine $ \a -> let s' = f s a in (s',go s')
+    go s = Coroutine $ \a -> let s' = f s a in s' `seq` (s',go s')
 
 unfold :: (s -> (b,s)) -> s -> Coroutine a b
 unfold f = go
   where
-    go s = Coroutine $ const $ let (b,s') = f s in (b,go s')
+    go s = Coroutine $ const $ let (b,s') = f s in s' `seq` (b,go s')
 
 (!!) :: Coroutine () a -> Int -> a
 Coroutine f !! 0 = fst $ f ()
