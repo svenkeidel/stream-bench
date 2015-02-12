@@ -1,9 +1,9 @@
-module Signal where
+module SignalStrict where
 
 import Prelude hiding ((!!),(>>))
 import Control.Arrow ((>>>))
 
-data Signal s a b = Signal ((a,s) -> (b,s)) s
+data Signal s a b = Signal !((a,s) -> (b,s)) !s
 
 scan :: (s -> a -> s) -> s -> Signal s a s
 scan f = Signal (\(a,s) -> let s' = f s a in (s',s'))
