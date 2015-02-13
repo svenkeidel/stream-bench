@@ -17,6 +17,7 @@ library
                        CoroutineStrict,
                        SignalLazy,
                        SignalStrict,
+                       SignalExistential,
                        StreamLazy,
                        StreamStrict
   ghc-options:         -Wall

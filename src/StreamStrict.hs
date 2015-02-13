@@ -23,6 +23,8 @@ integral :: Int -> Stream Double -> Stream Double
 integral rate = scan (\i x -> i + x * dt) 0
   where
     dt = 1 / fromIntegral rate
+{-# INLINE integral #-}
 
 nthIntegral :: Int -> (Double -> Double) -> Int -> Double
 nthIntegral rate fun n = integral rate (unfold (\t -> (fun (t / fromIntegral rate),t+1)) 0) !! n
+{-# INLINE nthIntegral #-}

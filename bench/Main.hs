@@ -9,6 +9,7 @@ import qualified CoroutineLazy
 import qualified CoroutineStrict
 import qualified SignalLazy
 import qualified SignalStrict
+import qualified SignalExistential
 import qualified StreamLazy
 import qualified StreamStrict
 
@@ -23,6 +24,7 @@ main = defaultMain
   , benchmark "coroutine/strict" CoroutineStrict.nthIntegral
   , benchmark "signal/lazy" SignalLazy.nthIntegral
   , benchmark "signal/strict" SignalStrict.nthIntegral
+  , benchmark "signal/existential" SignalExistential.nthIntegral
   , benchmark "stream/lazy" StreamLazy.nthIntegral
   , benchmark "stream/strict" StreamStrict.nthIntegral
   ]
