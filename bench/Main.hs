@@ -3,21 +3,28 @@ module Main where
 
 import Criterion.Main
 
-import qualified Stream as Stream
-import qualified Signal as Signal
-import qualified SignalStrict as SignalStrict
-import qualified Automaton as Automaton
-import qualified Coroutine as Coroutine
-import qualified CoroutineStrict as CoroutineStrict
+import qualified Automaton
+import qualified Baseline
+import qualified CoroutineLazy
+import qualified CoroutineStrict
+import qualified SignalLazy
+import qualified SignalStrict
+import qualified StreamLazy
+import qualified StreamStrict
 
 main :: IO ()
 main = defaultMain
-  [ benchmark "stream" Stream.nthIntegral
-  , benchmark "signal" Signal.nthIntegral
-  , benchmark "signal/strict" SignalStrict.nthIntegral
+  [ bgroup "c/baseline" $
+    [ bench "integral of sinus for 1 second at 48 khz" $
+       whnf (Baseline.nthIntegral 48000) 48000
+    ]
   , benchmark "automaton" Automaton.nthIntegral
-  , benchmark "coroutine" Coroutine.nthIntegral
+  , benchmark "coroutine/lazy" CoroutineLazy.nthIntegral
   , benchmark "coroutine/strict" CoroutineStrict.nthIntegral
+  , benchmark "signal/lazy" SignalLazy.nthIntegral
+  , benchmark "signal/strict" SignalStrict.nthIntegral
+  , benchmark "stream/lazy" StreamLazy.nthIntegral
+  , benchmark "stream/strict" StreamStrict.nthIntegral
   ]
   where
     benchmark name f = 

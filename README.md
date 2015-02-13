@@ -30,44 +30,55 @@ Results
 The numbers on my PC are:
 
 ```
-benchmarking stream/integral of sinus for 1 second at 48 khz
-time                 10.23 ms   (9.935 ms .. 10.53 ms)
-                     0.996 R²   (0.994 R² .. 1.000 R²)
-mean                 10.46 ms   (10.33 ms .. 10.53 ms)
-std dev              247.3 μs   (147.7 μs .. 350.4 μs)
-
-benchmarking signal/integral of sinus for 1 second at 48 khz
-time                 18.99 ms   (18.96 ms .. 19.02 ms)
+benchmarking c/baseline/integral of sinus for 1 second at 48 khz
+time                 1.856 ms   (1.854 ms .. 1.857 ms)
                      1.000 R²   (1.000 R² .. 1.000 R²)
-mean                 19.05 ms   (19.03 ms .. 19.17 ms)
-std dev              100.7 μs   (31.85 μs .. 198.3 μs)
-
-benchmarking signal/strict/integral of sinus for 1 second at 48 khz
-time                 2.775 ms   (2.773 ms .. 2.776 ms)
-                     1.000 R²   (1.000 R² .. 1.000 R²)
-mean                 2.790 ms   (2.786 ms .. 2.793 ms)
-std dev              10.52 μs   (10.05 μs .. 11.48 μs)
+mean                 1.857 ms   (1.857 ms .. 1.857 ms)
+std dev              279.0 ns   (233.2 ns .. 346.5 ns)
 
 benchmarking automaton/integral of sinus for 1 second at 48 khz
-time                 1.384 s    (1.372 s .. 1.392 s)
+time                 1.430 s    (1.401 s .. 1.492 s)
                      1.000 R²   (1.000 R² .. 1.000 R²)
-mean                 1.387 s    (1.384 s .. 1.389 s)
-std dev              2.692 ms   (0.0 s .. 2.910 ms)
+mean                 1.432 s    (1.424 s .. 1.438 s)
+std dev              9.857 ms   (0.0 s .. 10.97 ms)
 variance introduced by outliers: 19% (moderately inflated)
 
-benchmarking coroutine/integral of sinus for 1 second at 48 khz
-time                 117.7 ms   (117.4 ms .. 118.3 ms)
+benchmarking coroutine/lazy/integral of sinus for 1 second at 48 khz
+time                 117.0 ms   (116.5 ms .. 118.0 ms)
                      1.000 R²   (1.000 R² .. 1.000 R²)
-mean                 118.0 ms   (117.7 ms .. 118.4 ms)
-std dev              492.5 μs   (301.3 μs .. 710.1 μs)
+mean                 117.9 ms   (117.6 ms .. 118.3 ms)
+std dev              471.2 μs   (340.4 μs .. 601.5 μs)
 variance introduced by outliers: 11% (moderately inflated)
 
 benchmarking coroutine/strict/integral of sinus for 1 second at 48 khz
-time                 84.98 ms   (83.68 ms .. 87.42 ms)
-                     0.998 R²   (0.995 R² .. 1.000 R²)
-mean                 86.01 ms   (85.01 ms .. 87.18 ms)
-std dev              1.803 ms   (1.418 ms .. 2.257 ms)
+time                 86.22 ms   (83.67 ms .. 88.77 ms)
+                     0.999 R²   (0.998 R² .. 1.000 R²)
+mean                 84.65 ms   (83.88 ms .. 85.85 ms)
+std dev              1.432 ms   (648.3 μs .. 2.493 ms)
 
+benchmarking signal/lazy/integral of sinus for 1 second at 48 khz
+time                 54.15 ms   (53.39 ms .. 55.22 ms)
+                     0.999 R²   (0.999 R² .. 1.000 R²)
+mean                 54.20 ms   (53.68 ms .. 54.65 ms)
+std dev              839.1 μs   (577.4 μs .. 1.166 ms)
+
+benchmarking signal/strict/integral of sinus for 1 second at 48 khz
+time                 2.767 ms   (2.766 ms .. 2.768 ms)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 2.766 ms   (2.766 ms .. 2.767 ms)
+std dev              1.310 μs   (1.125 μs .. 1.596 μs)
+
+benchmarking stream/lazy/integral of sinus for 1 second at 48 khz
+time                 10.71 ms   (10.63 ms .. 10.76 ms)
+                     1.000 R²   (0.999 R² .. 1.000 R²)
+mean                 10.61 ms   (10.52 ms .. 10.67 ms)
+std dev              186.2 μs   (127.0 μs .. 260.3 μs)
+
+benchmarking stream/strict/integral of sinus for 1 second at 48 khz
+time                 6.481 ms   (6.398 ms .. 6.542 ms)
+                     0.999 R²   (0.998 R² .. 0.999 R²)
+mean                 6.311 ms   (6.272 ms .. 6.353 ms)
+std dev              118.5 μs   (104.2 μs .. 132.0 μs)
 ```
 
 The used compiler and libraries:

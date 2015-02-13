@@ -1,7 +1,6 @@
 module SignalStrict where
 
 import Prelude hiding ((!!),(>>))
-import Control.Arrow ((>>>))
 
 data Signal s a b = Signal !((a,s) -> (b,s)) !s
 

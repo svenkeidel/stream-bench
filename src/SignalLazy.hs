@@ -1,7 +1,6 @@
-module Signal where
+module SignalLazy where
 
 import Prelude hiding ((!!),(>>))
-import Control.Arrow ((>>>))
 
 data Signal s a b = Signal ((a,s) -> (b,s)) s
 
@@ -25,8 +24,10 @@ Signal f s0 >> Signal g t0 = Signal go (s0,t0)
       in (c,(s',t'))
 infixl 1 >>
 
-integral :: Double -> Signal Double Double Double
-integral dt = scan (\x i -> i + x * dt) 0
+integral :: Int -> Signal Double Double Double
+integral rate = scan (\x i -> i + x * dt) 0
+  where
+    dt = 1 / fromIntegral rate
 
-nthIntegral :: Double -> (Double -> Double) -> Int -> Double
-nthIntegral dt fun n = (unfold (\t -> (fun (t / dt),t+1)) 0 >> integral dt) !! n
+nthIntegral :: Int -> (Double -> Double) -> Int -> Double
+nthIntegral rate fun n = (unfold (\t -> (fun (t / fromIntegral rate),t+1)) 0 >> integral rate) !! n

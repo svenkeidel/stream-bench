@@ -1,4 +1,4 @@
-module Coroutine where
+module CoroutineLazy where
 
 import Prelude hiding ((!!),(>>))
 
@@ -26,8 +26,10 @@ Coroutine f >> Coroutine g = Coroutine $ \a ->
   in (c,f' >> g')
 infixl 1 >>
 
-integral :: Double -> Coroutine Double Double
-integral dt = scan (\x i -> i + x * dt) 0
+integral :: Int -> Coroutine Double Double
+integral rate = scan (\x i -> i + x * dt) 0
+  where
+    dt = 1 / fromIntegral rate
 
-nthIntegral :: Double -> (Double -> Double) -> Int -> Double
-nthIntegral dt fun n = (unfold (\t -> (fun (t / dt),t+1)) 0 >> integral dt) !! n
+nthIntegral :: Int -> (Double -> Double) -> Int -> Double
+nthIntegral rate fun n = (unfold (\t -> (fun (t / fromIntegral rate),t+1)) 0 >> integral rate) !! n
